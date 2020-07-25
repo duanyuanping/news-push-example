@@ -1,6 +1,6 @@
 // 监听浏览器分发的push事件
 self.addEventListener('push', ({ data }) => {
-  console.log('sw push事件触发');
+  console.log('sw push事件触发', data.json());
   if (!data) return;
   const { content, image } = data.json();
   const title = '网页消息推送demo';
