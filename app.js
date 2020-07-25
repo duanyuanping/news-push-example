@@ -74,8 +74,7 @@ router.post('/push', async (ctx, next) => {
 		content,
 		image
 	};
-	console.log(JSON.stringify(pushDate))
-	const result = await webPush.sendNotification(subscription, JSON.stringify(pushDate), options).catch(err => {
+	const result = await webPush.sendNotification(subscription, content, options).catch(err => {
 		if (err.statusCode === 404 || err.statusCode === 410) {
 			ctx.session.subscription = '';
 			return {
