@@ -7,7 +7,7 @@ self.addEventListener('push', ({ data }) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
   const options = {
     body: content || '服务端推送通知',
-    icon: image || `${self.origin}1.png`,
+    icon: image || `${self.origin}/1.png`,
     actions: [{
       action: 'github',
       title: 'github'
