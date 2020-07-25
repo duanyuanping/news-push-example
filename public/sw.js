@@ -2,12 +2,12 @@
 self.addEventListener('push', ({ data }) => {
   console.log('sw push事件触发', data.json());
   if (!data) return;
-  const content = data.json();
+  const { content, image } = data.json();
   const title = '网页消息推送demo';
   // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
   const options = {
     body: content || '服务端推送通知',
-    icon: `./1.png`,
+    icon: image || `${window.location.href}1.png`,
     actions: [{
       action: 'github',
       title: 'github'
