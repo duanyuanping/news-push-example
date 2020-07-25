@@ -18,9 +18,7 @@ const sessionConfig = {
   signed: true,
   rolling: false,
   renew: false,
-  secure: false,
-  encode: (json) => JSON.stringify(json), // 自定义cookie编码函数
-  decode: (str) => JSON.parse(str),
+  secure: false
 };
 
 // secret
@@ -66,6 +64,7 @@ webPush.setVapidDetails(
 	vapidKeys.privateKey
 );
 router.post('/push', async (ctx, next) => {
+	// console.log(ctx.header)
 	const { content, image } = ctx.request.body;
 	const { subscription } = ctx.session;
 	const puData = Buffer.from(JSON.stringify({
