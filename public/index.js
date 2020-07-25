@@ -63,16 +63,14 @@ async function min() {
   const noticeDom = document.getElementById('notice');
   const pushDom = document.getElementById('push');
   const contentDom = document.getElementById('inputContent');
-  const imageDom = document.getElementById('inputImage');
   // 触发本地通知
   noticeDom.onclick = () => {
     const content = contentDom.value;
-    const image = imageDom.value;
     const title = '网页消息推送demo';
     // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
     const options = {
       body: content || '网页本地通知',
-      icon: image || `${window.location.href}1.png`,
+      icon: `${window.location.href}1.png`,
       actions: [{
         action: 'github',
         title: 'github'
@@ -84,10 +82,9 @@ async function min() {
   // 触发推送服务通知
   pushDom.onclick = async () => {
     const content = contentDom.value;
-    const image = imageDom.value;
     const response = await fetch('/push', {
       method: 'post',
-      body: JSON.stringify({content, image}),
+      body: JSON.stringify({content}),
       headers: {
         'content-type': 'application/json'
       },

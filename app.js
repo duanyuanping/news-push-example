@@ -66,14 +66,11 @@ webPush.setVapidDetails(
 	vapidKeys.privateKey
 );
 router.post('/push', async (ctx, next) => {
-	const { content, image } = ctx.request.body;
+	const { content } = ctx.request.body;
 	const { subscription } = ctx.session;
 
 	if (!subscription) return ctx.body = { retcode: 1, msg: '客户端尚未上传浏览器订阅信息'};
-	const pushDate = {
-		content,
-		image
-	};
+
 	const result = await webPush.sendNotification(subscription, content, options).catch(err => {
 		if (err.statusCode === 404 || err.statusCode === 410) {
 			ctx.session.subscription = '';
