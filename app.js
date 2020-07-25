@@ -45,6 +45,7 @@ router.post('/subscript', async (ctx, next) => {
 		retcode: 0,
 		msg: 'success'
 	};
+	console.log('信息存入', ctx.request.body);
 });
 
 /**
@@ -88,7 +89,7 @@ router.post('/push', async (ctx, next) => {
 			};
 		}
 	});
-	
+	console.log(result)
 	if (result.retcode) return ctx.body = result;
 	ctx.body = {
 		retcode: 0,
