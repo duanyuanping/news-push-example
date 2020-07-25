@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "src"
+  ],
+  "ext": "js,ts,json",
+  "verbose": false,
+  "execMap": {},
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

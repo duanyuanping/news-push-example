@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>网页消息推送</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="./urlBase64ToUint8Array.js"></script>
+  <script src="./index.js"></script>
+</head>
+<body>
+  <section class="wrap">
+    <p>消息推送demo</p>
+    <input
+      id="inputContent"
+      placeholder="请输入通知内容"
+    />
+    <input
+      id="inputImage"
+      placeholder="请输入通知图片地址"
+    />
+    <div>
+      <button id="notice">本地通知</button>
+      <button id="push">服务器通知</button>
+    </div>
+  </section>
+</body>
