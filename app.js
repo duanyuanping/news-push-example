@@ -1,4 +1,3 @@
-  
 const Koa = require('koa');
 const Router = require('koa-router');
 const serve = require('koa-static');
@@ -67,14 +66,15 @@ router.post('/push', async (ctx, next) => {
 	// console.log(ctx.header)
 	const { content, image } = ctx.request.body;
 	const { subscription } = ctx.session;
-	const puData = Buffer.from(JSON.stringify({
+	const pushData = Buffer.from(JSON.stringify({
 		content,
 		image
 	}));
 	if (!subscription) return ctx.body = { retcode: 1, msg: '客户端尚未上传浏览器订阅信息'};
 
-	const result = await webPush.sendNotification(subscription, puData, options).catch(err => {
+	const result = await webPush.sendNotification(subscription, pushData, options).catch(err => {
 		if (err.statusCode === 404 || err.statusCode === 410) {
+			console.log('订阅信息无效');
 			ctx.session.subscription = '';
 			return {
 				retcode: 1,
