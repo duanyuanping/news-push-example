@@ -1,7 +1,4 @@
-// 1、service worker注册
-// navigator.serviceWorker.register('./sw.js')
-
-// 2、授权通知
+// 1、授权通知
 function askPermission() {
   return new Promise((res, rej) => {
     Notification.requestPermission(permission => {
@@ -12,18 +9,22 @@ function askPermission() {
         console.log('通知授权成功')
         res();
       }
-    })
+    });
   });
 }
 
+// 2、service worker注册
+function registSW() {
+  return navigator.serviceWorker.register('./sw.js')
+}
+
 // 3、subscription
-async function subscript(registration, publickKey) {
+function subscript(registration, publickKey) {
   const options = {
     userVisibleOnly: true,
     applicationServerKey: window.urlBase64ToUint8Array(publickKey)
   };
-  const subscription = await registration.pushManager.subscribe(options);
-  return subscription;
+  return registration.pushManager.subscribe(options);
 }
 
 // 4、push service
@@ -38,9 +39,9 @@ async function min() {
    * YxDDrS1lnZZ0xAkp5YsCr2yOTIIQeXp9ayJukRCf8Aw
    */
   const publickKey = 'BEfibeblQcaa3wzDyGSPddFreazGqDZHDNa2jsfXRn-ni_SO2-jb_1NDJHE8tvRHEzvtujXXijZzGBQNbbMBvZI';
-  const [registration] = await Promise.all([
-    navigator.serviceWorker.register('./sw.js'),
-    askPermission()
+  const [_, registration] = await Promise.all([
+    askPermission(),
+    registSW()
   ]);
   const subscription = await subscript(registration, publickKey);
   console.log(subscription)
