@@ -1,11 +1,11 @@
-# 网页消息推送
 浏览器允许业务服务向用户客户端推送消息，客户端收到推送消息后以通知的形式展示出来。业务运营人员可以通过这项功能定向给用户推送推荐消息或者重要通知，用于提升用户留存和用户使用时长。
 
 下文demo全部代码可以在[news-push-example](https://github.com/duanyuanping/news-push-example)中看到。
 
 ## 简述
 消息推送效果如下（当用户没有打开业务网站时，业务网站也能正常通知，在最终效果中有展示）：  
-![推送效果]()
+![推送效果](https://img2020.cnblogs.com/blog/1340809/202007/1340809-20200727100429371-1878486758.gif)
+
 
 网页消息推送流程图如下所示：  
 ![消息推送流程](https://nowpic.gtimg.com/hy_personal_room/0/now_acticity1595748121726.png/0)
@@ -126,7 +126,7 @@ service work中通过调用`self.registration.showNotification()`函数拉起浏
 ![notificationclick](https://nowpic.gtimg.com/hy_personal_room/0/now_acticity1595764980104.png/0)
 
 ## 消息推送效果
-
+![](https://img2020.cnblogs.com/blog/1340809/202007/1340809-20200727100533485-471817513.gif)
 
 ## 结语
 国内谷歌用户，如果没有翻墙，浏览器客户端将无法订阅FCM服务以及无法收到FCM服务下发的消息推送。业务服务在请求推送服务的时候，也需要设置设置代理，或者将业务服务部署到大陆外的网络。  
